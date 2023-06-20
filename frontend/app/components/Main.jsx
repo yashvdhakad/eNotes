@@ -3,9 +3,8 @@ import TypeBox from './main/TypeBox'
 import Notes from './main/Notes'
 
 const Main = () => {
-
   return (
-    <div className='py-60 flex flex-col justify-start items-center'>
+    <div className='py-40 flex flex-col justify-start items-center space-y-10'>
         <TypeBox />
         <Notes />
     </div>
