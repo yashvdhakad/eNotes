@@ -8,21 +8,26 @@ const TypeBox = () => {
     text.setState(e.target.value);
   }
 
-  const clickHandler = () => {
+  const clickHandler = (e) => {
     text.setNoteArr(arr => [...arr, text.state]);
+    text.setState("")
+    e.preventDefault()
   }
 
-  const clearHandler = () => {
-    text.setState()
-    console.log(text)
+  const keyPressHandle = (e) => {
+    e.key === "Enter" ? text.setNoteArr(arr => [...arr, text.state]) || text.setState("") : ""
+  }
+
+  const deleteHandler = () => {
+    text.setNoteArr([])
   }
 
   return (
     <>
-      <input onChange={changeHandler} className='w-1/2 h-20 flex justify-center items-center text-center text-2xl rounded-lg shadow-sm shadow-zinc-800/20 border' type="text" placeholder={text.state} />
+      <input onChange={changeHandler} onKeyPress={keyPressHandle} className='w-1/2 h-20 flex justify-center items-center text-center text-2xl rounded-lg shadow-sm shadow-zinc-800/20 border' type="text" placeholder="Your text..." value={text.state} />
       <div className="">
-        <button onClick={clickHandler} className='py-2 px-4 border rounded-md shadow-sm shadow-zinc-800/20 hover:shadow'>Add Note</button>
-        <button onClick={clearHandler} className='py-2 px-4 border rounded-md shadow-sm shadow-zinc-800/20 hover:shadow'>Clear Note</button>
+        <button onClick={clickHandler} type='submit' className='py-2 px-4 border rounded-md shadow-sm shadow-zinc-800/20 hover:shadow'>Add Note</button>
+        <button onClick={deleteHandler} type='submit' className='py-2 px-4 border rounded-md shadow-sm shadow-zinc-800/20 hover:shadow'>Delete All</button>
       </div>
     </>
   )

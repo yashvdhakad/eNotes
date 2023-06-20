@@ -2,7 +2,7 @@ import noteContext from './noteContext'
 import { useState } from 'react'
 
 const NotesState = (props) => {
-    const [state, setState] = useState("Type here...")
+    const [state, setState] = useState("")
     const [noteArr, setNoteArr] = useState([])
 
     return (
