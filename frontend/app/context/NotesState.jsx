@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 const NotesState = (props) => {
     const [state, setState] = useState("")
+
     const [noteArr, setNoteArr] = useState([])
 
     return (
