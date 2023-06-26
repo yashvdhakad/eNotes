@@ -2,12 +2,12 @@ import noteContext from './noteContext'
 import { useState } from 'react'
 
 const NotesState = (props) => {
-    const [state, setState] = useState("")
+    const [text, setText] = useState("")
 
     const [noteArr, setNoteArr] = useState([])
 
     return (
-        <noteContext.Provider value={{state, setState, noteArr, setNoteArr}}>
+        <noteContext.Provider value={{text, setText, noteArr, setNoteArr}}>
             {props.children}
         </noteContext.Provider>
     )
