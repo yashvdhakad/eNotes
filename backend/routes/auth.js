@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('../models/User')
 
 // create a User using: POST "/api/auth/". Doesn't require auth.
-router.get('/api/auth', (req, res)=>{
+router.post('/api/auth', (req, res)=>{
     console.log(req.body)
     const user = User(req.body);
     user.save()

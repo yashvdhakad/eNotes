@@ -11,7 +11,7 @@ app.use(express.json())
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
-app.get('/api/auth', require('./routes/auth'))
+app.post('/api/auth', require('./routes/auth'))
 app.get('/api/notes', require('./routes/notes'))
 
 app.listen(port, () => {
