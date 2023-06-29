@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
+const UserSchema = require('../models/User');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -22,7 +22,7 @@ router.post('/api/auth/createuser', [
 
     // Check whether the user with this email already exists
     try {
-        let user = await User.findOne({ email: req.body.email })
+        let user = await UserSchema.findOne({ email: req.body.email })
         if (user) {
             return res.status(400).json({ errors: "Sorry a user with this email already exists" })
         }
@@ -31,7 +31,7 @@ router.post('/api/auth/createuser', [
         const secPass = await bcrypt.hash(req.body.password, salt)
 
         // Create a new user
-        user = await User.create({
+        user = await UserSchema.create({
             name: req.body.name,
             email: req.body.email,
             password: secPass,
@@ -62,9 +62,9 @@ router.post('/api/auth/login', [
         return res.status(400).json({ errors: errors.array() })
     }
 
-    const {email, password} = req.body
+    const { email, password } = req.body
     try {
-        let user = await User.findOne({ email })
+        let user = await UserSchema.findOne({ email })
         if (!user) {
             return res.status(400).json({ error: "Sorry please try to login with correct credentials: Email" })
         }
@@ -88,12 +88,12 @@ router.post('/api/auth/login', [
     }
 })
 
-// Get logged in User Details using using: POST "/api/auth/login". No login required
+// Get logged-in User details using: POST "/api/auth/login". No login required
 router.post('/api/auth/getuser', fetchuser, async (req, res) => {
     try {
         userId = req.user.id
-        const user = await User.findOne(userId).select("-password")
-        res.json(user)
+        const user = await UserSchema.findById(userId).select("-password")
+        res.send(user)
     } catch (error) {
         res.status(500).send("Internal Server error")
         console.error(error.message)

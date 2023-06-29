@@ -14,7 +14,10 @@ app.get('/', (req, res) => {
 app.post('/api/auth/createuser', require('./routes/auth'))
 app.post('/api/auth/login', require('./routes/auth'))
 app.post('/api/auth/getuser', require('./routes/auth'))
-app.get('/api/notes', require('./routes/notes'))
+app.get('/api/notes/fetchallnotes', require('./routes/notes'))
+app.post('/api/notes/addnote', require('./routes/notes'))
+app.put('/api/notes/updatenote/:id', require('./routes/notes'))
+app.delete('/api/notes/deletenote/:id', require('./routes/notes'))
 
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`)
