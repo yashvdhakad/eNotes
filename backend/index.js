@@ -3,7 +3,7 @@ const connectToMongo = require("./db/config");
 connectToMongo();
 
 const app = express()
-const port = 3000
+const port = 3017
 
 app.use(express.json())
 
@@ -18,6 +18,7 @@ app.get('/api/notes/fetchallnotes', require('./routes/notes'))
 app.post('/api/notes/addnote', require('./routes/notes'))
 app.put('/api/notes/updatenote/:id', require('./routes/notes'))
 app.delete('/api/notes/deletenote/:id', require('./routes/notes'))
+app.delete('/api/notes/deleteallnotes', require('./routes/notes'))
 
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`)

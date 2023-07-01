@@ -83,4 +83,20 @@ router.delete('/api/notes/deletenote/:id', fetchuser, async (req, res) => {
     }
 })
 
+// Route 5. Delete all note using: DELETE "/api/notes/deleteallnotes", Login Required
+router.delete('/api/notes/deleteallnotes', fetchuser, async (req, res) => {
+    try {
+        const { title, description, tag } = req.body;
+
+        // Allow deletion only if user owns this note
+        if (note.user.toString() !== req.user.id) { return res.status(404).send("Not Allowed") }
+
+        note = await NotesSchema.deleteMany({})
+        res.json({ "Success": "All Notes have been deleted", note});
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).send("Internal Server error")
+    }
+})
+
 module.exports = router
