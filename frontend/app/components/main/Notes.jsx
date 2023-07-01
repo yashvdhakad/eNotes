@@ -3,19 +3,20 @@ import React, { useContext } from 'react'
 
 const Notes = () => {
     const ctxt = useContext(noteContext)
-    const {editNote} = ctxt
+    const { notes, setNotes, editNote, deleteNote } = ctxt
 
     return (
         <section className="border-[bisque] w-1/2 p-6 rounded-lg space-y-4">
-            {ctxt.notes.map((note, i) => {
+            {notes.map((note, i) => {
                 const deleteHandler = () => {
-                    ctxt.setNotes(ctxt.notes.toSpliced(i, 1));
+                    setNotes(notes.toSpliced(i, 1));
+                    deleteNote(note._id);
                 }
 
                 const editHandler = () => {
                     let newText = prompt("Edit here:")
-                    ctxt.setNotes(ctxt.notes.toSpliced(i, 1, newText));
-                    editNote();
+                    setNotes(notes.toSpliced(i, 1, newText));
+                    editNote(note._id);
                 }
 
                 return (

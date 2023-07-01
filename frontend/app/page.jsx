@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <NotesState>
       <div className="max-w-screen-xl h-screen m-auto">
-        <Navbar />
+        {/* <Navbar /> */}
         <Main />
       </div>
     </NotesState>
