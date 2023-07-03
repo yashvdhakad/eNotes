@@ -87,10 +87,10 @@ router.delete('/api/notes/deletenote/:id', fetchuser, async (req, res) => {
 router.delete('/api/notes/deleteallnotes', fetchuser, async (req, res) => {
     try {
         // Allow deletion only if user owns this note
-        if (note.user.toString() !== req.user.id) { return res.status(404).send("Not Allowed") }
+        // if (note.user.toString() !== req.user.id) { return res.status(404).send("Not Allowed") }
 
-        note = await NotesSchema.deleteMany({})
-        res.json({ "Success": "All Notes have been deleted", note});
+        await NotesSchema.deleteMany({})
+        res.json({ "Success": "All Notes have been deleted"});
     } catch (error) {
         console.error(error.message)
         res.status(500).send("Internal Server error")

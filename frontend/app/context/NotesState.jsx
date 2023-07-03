@@ -61,21 +61,20 @@ const NotesState = (props) => {
         const data = await response.json();
     }
 
-    // // Delete all notes
-    // const deleteAllNotes = async () => {
-    //     const response = await fetch(`${host}/api/notes/deleteallnotes`, {
-    //         method: "DELETE",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ5ZDgzOTk1Njk1ZmZmN2E3YTEzNGNmIn0sImlhdCI6MTY4ODA0NTI3NX0.1UTOIT6YCR5CvJD-ElVPCQHb9eRLuTW9ttS3h7WmdVc"
-    //         },
-    //     });
-    //     const data = await response.json();
-    //     console.log(data)
-    // }
+    // Delete all notes
+    const deleteAllNotes = async () => {
+        const response = await fetch(`${host}/api/notes/deleteallnotes`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQ5ZDgzOTk1Njk1ZmZmN2E3YTEzNGNmIn0sImlhdCI6MTY4ODA0NTI3NX0.1UTOIT6YCR5CvJD-ElVPCQHb9eRLuTW9ttS3h7WmdVc"
+            },
+        });
+        const data = await response.json();
+    }
 
     return (
-        <noteContext.Provider value={{ notes, setNotes, addNote, editNote, showNotes, deleteNote }}>
+        <noteContext.Provider value={{ notes, setNotes, addNote, editNote, showNotes, deleteNote, deleteAllNotes }}>
             {props.children}
         </noteContext.Provider>
     )

@@ -36,7 +36,7 @@ const TypeBox = () => {
   }
 
   const deleteAllHandler = () => {
-    // setNotes([]);
+    setNotes([]);
     deleteAllNotes()
   }
 
